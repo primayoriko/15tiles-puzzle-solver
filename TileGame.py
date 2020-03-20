@@ -8,6 +8,13 @@ class TileGame:
             for j in range(size):
                 self.elmt[i][j] = arr[i*size + j]
 
+    def copyTile(self, other):
+        self.size = other.size
+        for i in range(self.size):
+            for j in range(self.size):
+                self.elmt[i][j] = other.elmt[i][j]
+
+
     def moveBlankDown(i, j=-1):
         if(j==-1):
             y = i//self.size
@@ -51,6 +58,13 @@ class TileGame:
                 cnt  = cnt + 1 if(self.elmt[i][j]!=0 and self.elmt[i][j]!=compares.elmt[i][j])\
                        else cnt
         return cnt
+
+    def fungsiKurang(self, compares, index): #I don't know the english of it
+        for i in range(self.size**2):
+            if(self.elmt[i//self.size][i%self.size]==index):
+                x = i%self.size
+                y = i//self.size
+                break
 
     def printElmt(self):
         for i in range(self.size):
