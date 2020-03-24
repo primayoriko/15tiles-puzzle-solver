@@ -16,45 +16,37 @@ class TileGame:
             for j in range(self.size):
                 self.elmt[i][j] = other.elmt[i][j]
 
-    def moveBlankDown(i, j=-1):
-        if(j==-1):
-            x,y =i%self.size, i//self.size
+    def moveBlankDown(self):
+        if(self.blank_y != self.size-1):
+            self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y+1][self.blank_x] =\
+                self.elmt[self.blank_y+1][self.blank_x], self.elmt[self.blank_y][self.blank_x]
+            self.blank_y+=1
         else:
-            x, y = j, i
-        if(self.elmt[y][x]==0 and y != self.size-1):
-            self.elmt[y][x], self.elmt[y+1][x] = self.elmt[y+1][x], self.elmt[y][x]
-        else:
-            print("operasi Down di ", i, " tidak valid")
+            print("operasi Down tidak valid")
 
-    def moveBlankUp(i, j=-1):
-        if(j==-1):
-            x,y =i%self.size, i//self.size
+    def moveBlankUp(self):
+        if(self.blank_y != 0):
+            self.elmt[self.blank_y-1][self.blank_x], self.elmt[self.blank_y][self.blank_x] =\
+                self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y-1][self.blank_x]
+            self.blank_y-=1
         else:
-            x, y = j, i
-        if(self.elmt[y][x]==0 and y != 0):
-            self.elmt[y][x], self.elmt[y-1][x] = self.elmt[y-1][x], self.elmt[y][x]
-        else:
-            print("operasi Up di ", i, " tidak valid")
+            print("operasi Up tidak valid")
 
-    def moveBlankLeft(i, j=-1):
-        if(j==-1):
-            x,y =i%self.size, i//self.size
+    def moveBlankLeft(self):
+        if(self.blank_x != 0):
+            self.elmt[self.blank_y][self.blank_x-1], self.elmt[self.blank_y][self.blank_x] =\
+                self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y][self.blank_x-1]
+            self.blank_x-=1
         else:
-            x, y = j, i
-        if(self.elmt[y][x]==0 and x != 0):
-            self.elmt[y][x], self.elmt[y][x-1] = self.elmt[y][x-1], self.elmt[y][x]
-        else:
-            print("operasi Left di ", i, " tidak valid")
+            print("operasi Left tidak valid")
 
-    def moveBlankRight(i, j=-1):
-        if(j==-1):
-            x,y =i%self.size, i//self.size
+    def moveBlankRight(self):
+        if(self.blank_x != self.size-1):
+            self.elmt[self.blank_y][self.blank_x+1], self.elmt[self.blank_y][self.blank_x] =\
+                self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y][self.blank_x+1]
+            self.blank_x+=1
         else:
-            x, y = j, i
-        if(self.elmt[y][x]==0 and x != self.size):
-            self.elmt[y][x], self.elmt[y][x+1] = self.elmt[y][x+1], self.elmt[y][x]
-        else:
-            print("operasi Right di ", i, " tidak valid")
+            print("operasi Right tidak valid")
 
     def countUnmatch(self, compares):
         cnt = 0
