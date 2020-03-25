@@ -5,9 +5,9 @@ INF = int(1e9+7)
 
 class Trice:
     def __init__(self,a, b, c):
-        this.cost = a
-        this.rootDist = b
-        this.state = c
+        self.cost = a
+        self.rootDist = b
+        self.state = c
 
 class BranchAndBound:
     def __init__(self, root, goal):
@@ -33,9 +33,11 @@ class BranchAndBound:
         return switcher.get(opt, false)
 
     def generateChild(self, parentState, opt, generatedState = 1, currCost = INF):
-        child = TileGame(parentState.state)
+        child = TileGame()
+        child.copyTile(parentState.state)
         cost = INF
         succ = self.switchChildGenerator(opt, child)
+
         if (succ):
             unmatchTile = child.countUnmatch(self.goalState)
             if(unmatchTile == 0):
@@ -45,7 +47,7 @@ class BranchAndBound:
                 self.states.append(childState)
         return generatedState + 1 if succ else generatedState , min(currCost, cost)
 
-    def findRes(self):
+    def findResult(self):
         generatedState = 1
         currResult = INF
         while(len(self.states)!=0):
@@ -58,5 +60,5 @@ class BranchAndBound:
         # Catat dah sampe goal belum
 
 if __name__=='__main__':
-    
+
     pass

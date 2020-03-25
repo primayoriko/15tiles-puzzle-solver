@@ -10,9 +10,6 @@ class TileGame:
                     self.blankX, self.blankY = j, i
                 self.elmt[i][j] = arr[i][j]
 
-    def __init__(self, other):
-        self.copyTile(other)
-
     def copyTile(self, other):
         self.size = other.size
         for i in range(self.size):
@@ -70,13 +67,13 @@ class TileGame:
 
     def fungsiKurang(self):
         sums = 0
-        for i in range(4):
-            for j in range(4):
+        for i in range(self.size):
+            for j in range(self.size):
                 if(i == self.blankY and j == self.blankX):
                     # print(i, j)
                     sums += ((i+j)%2)
                 else:
-                    for k in range(i*self.size + j+1, 16):
+                    for k in range(i*self.size + j+1, self.size**2):
                         if(self.elmt[k//self.size][k%self.size]<self.elmt[i][j]):
                             # print(i, j, k//self.size, k%self.size)
                             sums+=1 if (k//self.size != self.blankY and k%self.size != self.blankX) else 0

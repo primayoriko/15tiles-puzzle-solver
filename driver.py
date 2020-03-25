@@ -1,4 +1,4 @@
-from TileGame import *
+from BranchAndBound import *
 
 def inputTile(param, tile, filename="tile.txt"):
     if(param==2):
@@ -26,8 +26,12 @@ if __name__=='__main__':
     tile = TileGame(arr=arr)
     tile.printElmt()
     # print(tile.blank_x, tile.blank_y)
-    tile.moveBlankUp()
-    tile.moveBlankLeft()
-    tile.moveBlankRight()
-    tile.printElmt()
-    print(tile.countUnmatch(tileGoal))
+    # tile.moveBlankUp()
+    # tile.moveBlankLeft()
+    # tile.moveBlankRight()
+    # tile.printElmt()
+    #print(tile.countUnmatch(tileGoal))
+
+    Solver = BranchAndBound(tile, tileGoal)
+    print(Solver.findMinIdx())
+
