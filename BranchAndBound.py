@@ -64,6 +64,7 @@ class BranchAndBound:
             if(currResult > currState.cost):
                 self.steps = self.steps[0:currState.rootDist]
                 self.steps.append(currState.state)
+                self.visited.append(currState.state)
                 generatedState, currResult = self.generateChild(currState, 1, generatedState, currResult)
                 generatedState, currResult = self.generateChild(currState, 2, generatedState, currResult)
                 generatedState, currResult = self.generateChild(currState, 3, generatedState, currResult)

@@ -1,6 +1,6 @@
 from BranchAndBound import *
 
-def inputTile(param, tile, filename="tile.txt"):
+def inputTile(param, tile, filename="Puzzle_0.txt"):
     if(param==2):
         file = open(filename, "r")
     for i in range(4):

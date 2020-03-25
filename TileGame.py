@@ -10,6 +10,9 @@ class TileGame:
                     self.blankX, self.blankY = j, i
                 self.elmt[i][j] = arr[i][j]
 
+    def __eq__(self, other):
+        return self.size == other.size and self.elmt == other.elmt
+
     def copyTile(self, other):
         self.size = other.size
         for i in range(self.size):
@@ -59,19 +62,26 @@ class TileGame:
                     else cnt
         return cnt
 
-    def fungsiKurang(self):
+    def fungsiKurang(self, idx=-1): 
+        # Actually implementing only for 4x4 tile
+        # dont know its name in english 
+        arrayFungsiKurang=[0 for i in range(16)]
         sums = 0
         for i in range(self.size):
             for j in range(self.size):
-                if(i == self.blankY and j == self.blankX):
-                    # print(i, j)
-                    sums += ((i+j)%2)
-                else:
+                if(i != self.blankY and j != self.blankX):
                     for k in range(i*self.size + j+1, self.size**2):
                         if(self.elmt[k//self.size][k%self.size]<self.elmt[i][j]):
                             # print(i, j, k//self.size, k%self.size)
-                            sums+=1 if (k//self.size != self.blankY and k%self.size != self.blankX) else 0
-        return sums
+                            arrayFungsiKurang[self.elmt[i][j]]+=1 \
+                                if (k//self.size != self.blankY and k%self.size != self.blankX) else 0
+                if(arr[i][j] == idx):
+                    return arrayFungsiKurang[idx]
+        return sum(arrayFungsiKurang)
+
+    def isSolvable(self):
+        arrayFungsiKurang = self.fungsiKurang()
+        return True if (arrayFungsiKurang + self.blankX + self.blankY)%2==0 else False, arrayFungsiKurang
 
     def printElmt(self):
         for i in range(self.size):
@@ -79,16 +89,6 @@ class TileGame:
             # for j in range(self.size):
             #     print(self.elmt[i][j]+' ')
             # print
-
-if __name__ == "__main__":
-    if(param==2):
-        file = open(filename, "r")
-    for i in range(4):
-        line = input() if param==1 else file.readline()
-        val = line.split()
-        val = [int(val[j]) for j in range(len(val))]
-        tile[i] = val
-    file.close()
 
 if __name__=='__main__':
     arr=[]
