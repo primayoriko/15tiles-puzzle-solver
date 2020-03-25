@@ -31,10 +31,15 @@ if __name__=='__main__':
     # tile.moveBlankRight()
     # tile.printElmt()
     #print(tile.countUnmatch(tileGoal))
-
+    # print(tile.blankX, tile.blankY)
     Solver = BranchAndBound(tile, tileGoal)
-    print(Solver.findMinIdx())
-    if(Solver.switchChildGenerator(tile, 4)):
-        print("succeed")
-    tile.printElmt()
+    # print(Solver.findMinIdx())
+    # if(Solver.switchChildGenerator(tile, 4)):
+    #     print("succeed")
+    # tile.printElmt()
+    print(Solver.states[0].cost, Solver.states[0].rootDist)
+    Solver.states[0].state.printElmt()
+    minStep, totalState = Solver.findResult()
+    # print(len(Solver.states))
+    # print(minStep, totalState)
 

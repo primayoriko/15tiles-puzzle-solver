@@ -15,6 +15,8 @@ class TileGame:
         for i in range(self.size):
             for j in range(self.size):
                 self.elmt[i][j] = other.elmt[i][j]
+        self.blankX = other.blankX
+        self.blankY = other.blankY
         return self
 
     def moveBlankDown(self):
