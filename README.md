@@ -13,7 +13,7 @@ so it must be more efficienr that exhastive search method instead.
 ------
 1. Navigate to src/ directory, then execute
 
-		python Driver.py test_case_file_name
+		python Driver.py test_case_path_and_file_name
 
 2. The program the will interprete automatically and start compute the solution, wait until it shows the result
 
