@@ -24,7 +24,7 @@ if __name__=='__main__':
     inputTile(param=param, tile=arr)
     tileGoal = TileGame(arr=arrGoal)
     tile = TileGame(arr=arr)
-    tile.printElmt()
+    # tile.printElmt()
     # print(tile.blank_x, tile.blank_y)
     # tile.moveBlankUp()
     # tile.moveBlankLeft()
@@ -37,9 +37,10 @@ if __name__=='__main__':
     # if(Solver.switchChildGenerator(tile, 4)):
     #     print("succeed")
     # tile.printElmt()
-    print(Solver.states[0].cost, Solver.states[0].rootDist)
-    Solver.states[0].state.printElmt()
+    # print(Solver.states[0].cost, Solver.states[0].rootDist)
+    # Solver.states[0].state.printElmt()
     minStep, totalState = Solver.findResult()
     # print(len(Solver.states))
     print(minStep, totalState)
+    Solver.printSteps()
 

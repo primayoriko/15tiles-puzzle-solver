@@ -14,6 +14,8 @@ class BranchAndBound:
         self.goalState = goal
         initState = Trice(root.countUnmatch(goal), 0, root) 
         self.states = [initState]
+        self.visited = []
+        self.steps = []
         # heapq.heapify(self.states)
 
     def findMinIdx(self):
@@ -45,23 +47,36 @@ class BranchAndBound:
             unmatchTile = child.countUnmatch(self.goalState)
             if(unmatchTile == 0):
                 cost = parentState.rootDist + 1
-            else : 
+                self.steps.append(child)
+            elif (child not in self.visited):
+                generatedState += 1
                 childState = Trice(unmatchTile + parentState.rootDist + 1, parentState.rootDist + 1, child)
                 self.states.append(childState)
-        return generatedState + 1 if succ else generatedState , min(currCost, cost)
+        return generatedState, min(currCost, cost)
 
     def findResult(self):
         generatedState = 1
         currResult = INF
+        self.steps = []
+        self.visited = []
         while(len(self.states)!=0):
-            currState = self.states.pop(self.findMinIdx())
+            currState = self.states.pop(self.findMinIdx())            
             if(currResult > currState.cost):
+                self.steps = self.steps[0:currState.rootDist]
+                self.steps.append(currState.state)
                 generatedState, currResult = self.generateChild(currState, 1, generatedState, currResult)
                 generatedState, currResult = self.generateChild(currState, 2, generatedState, currResult)
                 generatedState, currResult = self.generateChild(currState, 3, generatedState, currResult)
                 generatedState, currResult = self.generateChild(currState, 4, generatedState, currResult)
         return currResult, generatedState
-        # Catat dah sampe goal belum
+    
+    def printSteps(self):
+        print("State awal:")
+        self.steps[0].printElmt()
+        for i in range(1, len(self.steps)):
+            print("Step ke-"+str(i)+":")
+            self.steps[i].printElmt()
+        print("finish!")
 
 if __name__=='__main__':
 
