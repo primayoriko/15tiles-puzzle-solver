@@ -41,5 +41,5 @@ if __name__=='__main__':
     Solver.states[0].state.printElmt()
     minStep, totalState = Solver.findResult()
     # print(len(Solver.states))
-    # print(minStep, totalState)
+    print(minStep, totalState)
 

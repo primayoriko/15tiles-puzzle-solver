@@ -40,8 +40,8 @@ class BranchAndBound:
         succ = self.switchChildGenerator(child, opt)
 
         if (succ):
-            print(opt)
-            child.printElmt()
+            # print(opt)
+            # child.printElmt()
             unmatchTile = child.countUnmatch(self.goalState)
             if(unmatchTile == 0):
                 cost = parentState.rootDist + 1
@@ -53,13 +53,13 @@ class BranchAndBound:
     def findResult(self):
         generatedState = 1
         currResult = INF
-        #while(len(self.states)!=0):
-        currState = self.states.pop(self.findMinIdx())
-        if(currResult > currState.cost):
-            generatedState, currResult = self.generateChild(currState, 1, generatedState, currResult)
-            generatedState, currResult = self.generateChild(currState, 2, generatedState, currResult)
-            generatedState, currResult = self.generateChild(currState, 3, generatedState, currResult)
-            generatedState, currResult = self.generateChild(currState, 4, generatedState, currResult)
+        while(len(self.states)!=0):
+            currState = self.states.pop(self.findMinIdx())
+            if(currResult > currState.cost):
+                generatedState, currResult = self.generateChild(currState, 1, generatedState, currResult)
+                generatedState, currResult = self.generateChild(currState, 2, generatedState, currResult)
+                generatedState, currResult = self.generateChild(currState, 3, generatedState, currResult)
+                generatedState, currResult = self.generateChild(currState, 4, generatedState, currResult)
         return currResult, generatedState
         # Catat dah sampe goal belum
 

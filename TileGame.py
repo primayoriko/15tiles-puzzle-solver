@@ -26,8 +26,6 @@ class TileGame:
             self.blankY+=1
             return True
         return False
-        # else:
-        #     print("operasi Down tidak valid")
 
     def moveBlankUp(self):
         if(self.blankY != 0):
@@ -36,8 +34,6 @@ class TileGame:
             self.blankY-=1
             return True
         return False
-        # else:
-        #     print("operasi Up tidak valid")
 
     def moveBlankLeft(self):
         if(self.blankX != 0):
@@ -46,8 +42,6 @@ class TileGame:
             self.blankX-=1
             return True
         return False
-        # else:
-        #     print("operasi Left tidak valid")
 
     def moveBlankRight(self):
         if(self.blankX != self.size-1):
@@ -56,8 +50,6 @@ class TileGame:
             self.blankX+=1
             return True
         return False
-        # else:
-        #     print("operasi Right tidak valid")
 
     def countUnmatch(self, compares):
         cnt = 0
