@@ -1,4 +1,5 @@
 import sys
+from time import time
 from BranchAndBound import *
 
 def inputTile(tile, param=1, filename="Puzzle.txt"):
@@ -33,6 +34,8 @@ if __name__=='__main__':
     print("Array hasil input file "+filename+":")
     tile.printElmt()
     print("")
+
+    timestamp1 = time()
     canSolved = tile.printFungsiKurangX()
 
     if(not canSolved):
@@ -47,4 +50,7 @@ if __name__=='__main__':
         print("Banyak State di generate : " + str(totalState))
         print("")
         Solver.printSteps()
+    
+    timestamp2 = time()
+    print ("Time Elapsed : " + str((timestamp2 - timestamp1)*1000)+" ms")
 
