@@ -1,5 +1,8 @@
 *.pdf
 *.docx
 *.pyc
+*.zip
 test.py
 __pycache__/
+doc/
+Tucil3StrAlgo-13518146/
