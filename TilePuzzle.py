@@ -1,4 +1,4 @@
-class TileGame:
+class TilePuzzle:
     def __init__(self, size=4, arr=[[0]*4 for _ in range(4)]):
         self.size = size
         self.elmt = [[0]*size for _ in range(size)]
@@ -73,20 +73,29 @@ class TileGame:
                             # print(i, j, k//self.size, k%self.size)
                             arrayFungsiKurang[self.elmt[i][j]]+=1 \
                                 if (k//self.size != self.blankY and k%self.size != self.blankX) else 0
-                if(arr[i][j] == idx):
+                if(self.elmt[i][j] == idx):
                     return arrayFungsiKurang[idx]
-        return sum(arrayFungsiKurang)
+        return arrayFungsiKurang
 
     def isSolvable(self):
         arrayFungsiKurang = self.fungsiKurang()
-        return True if (arrayFungsiKurang + self.blankX + self.blankY)%2==0 else False, arrayFungsiKurang
+        X = (self.blankX + self.blankY)%2
+        return True if (sum(arrayFungsiKurang) + X)%2==0 else False, arrayFungsiKurang, X
 
     def printElmt(self):
         for i in range(self.size):
             print(self.elmt[i])
-            # for j in range(self.size):
-            #     print(self.elmt[i][j]+' ')
-            # print
+    
+    def printFungsiKurangX(self):
+        canSolved, arrayFungsiKurang, X = self.isSolvable()
+
+        print("Hasil array fungsi kurang:")
+        for i in range(1, len(arrayFungsiKurang)):
+            print(str(i) + " : " + str(arrayFungsiKurang[i]))
+        print("Total : "+str(sum(arrayFungsiKurang)))
+
+        print("Nilai X : " + str(X))
+        return canSolved
 
 if __name__=='__main__':
     arr=[]
@@ -96,7 +105,7 @@ if __name__=='__main__':
             arrTemp.append((i*4 +j+1)%16)
         arr.append(arrTemp)
 
-    tile = TileGame(arr=arr)
+    tile = TilePuzzle(arr=arr)
     tile.printElmt()
     tile.moveBlankUp()
     tile.moveBlankLeft()

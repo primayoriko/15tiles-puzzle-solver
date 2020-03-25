@@ -1,5 +1,5 @@
 # import heapq
-from TileGame import *
+from TilePuzzle import *
 
 INF = int(1e9+7)
 
@@ -36,7 +36,7 @@ class BranchAndBound:
         return func()
 
     def generateChild(self, parentState, opt, generatedState = 1, currCost = INF):
-        child = TileGame()
+        child = TilePuzzle()
         child.copyTile(parentState.state)
         cost = INF
         succ = self.switchChildGenerator(child, opt)
