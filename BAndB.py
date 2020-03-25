@@ -1,17 +1,42 @@
-import TileGame
 import heapq
+from TileGame import *
+
+INF = int(1e9+7)
 
 class Trice:
     def __init__(self,a, b, c):
-        this.state = b
+        this.state = c
         this.cost = a
-        this.blank = c
+        this.rootDist = b
 
 class BAndB:
-    def __init__(self, root, blank):
-        elmt_1 = Trice(0, root, blank) 
+    def __init__(self, root, goal):
+        this.goalState = goal
+        elmt_1 = Trice(root.countUnmatch(goal), 0, root) 
         self.states = [elmt_1]
-        heapq.heapify(self.states)
+        # heapq.heapify(self.states)
+
+    def findRes(self):
+        generatedState = 1
+        currResult = INF
+        while(len(self.states)!=0):
+            currState = self.states.pop(self.findMinIdx())
+            currLeft = TileGame()
+            currRight = TileGame()
+            currUp = TileGame()
+            currDown = TileGame()
+            if (currLeft.copyTile(currState).moveBlankLeft()==1):
+                generatedState+=1
+                self.states.append()
+            curr
+        # Catat dah sampe goal belum
+
+    def findMinIdx(self):
+        minVal, minIdx = self.states[0].cost, 0
+        for i in range(1, len(this.states)):
+            if minVal > self.states[i].cost:
+                minVal, minIdx = elf.states[i].cost, i
+        return i
 
     def findResult(self):
         # heapq.heapify(self.states)
@@ -22,10 +47,8 @@ class BAndB:
             x = now.blank//size
             y = now.blank%size
             s1 = 
-            if(now.blank != size-1){
-
-            }
-
+            if(now.blank != size-1):
+                return
 
 if __name__=='__main__':
     pass

@@ -15,45 +15,54 @@ class TileGame:
         for i in range(self.size):
             for j in range(self.size):
                 self.elmt[i][j] = other.elmt[i][j]
+        return self
 
     def moveBlankDown(self):
         if(self.blank_y != self.size-1):
             self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y+1][self.blank_x] =\
                 self.elmt[self.blank_y+1][self.blank_x], self.elmt[self.blank_y][self.blank_x]
             self.blank_y+=1
-        else:
-            print("operasi Down tidak valid")
+            return 1
+        return 0
+        # else:
+        #     print("operasi Down tidak valid")
 
     def moveBlankUp(self):
         if(self.blank_y != 0):
             self.elmt[self.blank_y-1][self.blank_x], self.elmt[self.blank_y][self.blank_x] =\
                 self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y-1][self.blank_x]
             self.blank_y-=1
-        else:
-            print("operasi Up tidak valid")
+            return 1
+        return 0
+        # else:
+        #     print("operasi Up tidak valid")
 
     def moveBlankLeft(self):
         if(self.blank_x != 0):
             self.elmt[self.blank_y][self.blank_x-1], self.elmt[self.blank_y][self.blank_x] =\
                 self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y][self.blank_x-1]
             self.blank_x-=1
-        else:
-            print("operasi Left tidak valid")
+            return 1
+        return 0
+        # else:
+        #     print("operasi Left tidak valid")
 
     def moveBlankRight(self):
         if(self.blank_x != self.size-1):
             self.elmt[self.blank_y][self.blank_x+1], self.elmt[self.blank_y][self.blank_x] =\
                 self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y][self.blank_x+1]
             self.blank_x+=1
-        else:
-            print("operasi Right tidak valid")
+            return 1
+        return 0
+        # else:
+        #     print("operasi Right tidak valid")
 
     def countUnmatch(self, compares):
         cnt = 0
         for i in range(self.size):
             for j in range(self.size):
                 cnt  = cnt + 1 if(self.elmt[i][j]!=0 and self.elmt[i][j]!=compares.elmt[i][j])\
-                       else cnt
+                    else cnt
         return cnt
 
     def fungsiKurang(self):
