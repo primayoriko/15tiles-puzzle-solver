@@ -11,9 +11,9 @@ class Trice:
 
 class BAndB:
     def __init__(self, root, goal):
-        this.goalState = goal
-        elmt_1 = Trice(root.countUnmatch(goal), 0, root) 
-        self.states = [elmt_1]
+        self.goalState = goal
+        initState = Trice(root.countUnmatch(goal), 0, root) 
+        self.states = [initState]
         # heapq.heapify(self.states)
 
     def findRes(self):
@@ -21,14 +21,17 @@ class BAndB:
         currResult = INF
         while(len(self.states)!=0):
             currState = self.states.pop(self.findMinIdx())
-            currLeft = TileGame()
-            currRight = TileGame()
-            currUp = TileGame()
-            currDown = TileGame()
-            if (currLeft.copyTile(currState).moveBlankLeft()==1):
-                generatedState+=1
-                self.states.append()
-            curr
+            if(currResult<currState.cost):
+                currLeft = TileGame()
+                currRight = TileGame()
+                currUp = TileGame()
+                currDown = TileGame()
+
+                if (currLeft.copyTile(currState).moveBlankLeft()==1):
+                    generatedState+=1
+                    self.states.append(currLeft)
+                    if(currLeft.countUnmatch(self.goalState)==0)
+                
         # Catat dah sampe goal belum
 
     def findMinIdx(self):

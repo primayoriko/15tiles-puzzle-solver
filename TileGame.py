@@ -87,12 +87,27 @@ class TileGame:
             # print
 
 if __name__ == "__main__":
-     a = [[2,3], [51,7]]
-     b = a
-     a = []
-     print(a)
-     for i in range(2):
-         print(b[i])
-     #print(b)
-     print(min(b))
-    # pass
+    if(param==2):
+        file = open(filename, "r")
+    for i in range(4):
+        line = input() if param==1 else file.readline()
+        val = line.split()
+        val = [int(val[j]) for j in range(len(val))]
+        tile[i] = val
+    file.close()
+
+if __name__=='__main__':
+    arr=[]
+    for i in range(4):
+        arrTemp=[]
+        for j in range(4):
+            arrTemp.append((i*4 +j+1)%16)
+        arr.append(arrTemp)
+
+    tile = TileGame(arr=arr)
+    tile.printElmt()
+    tile.moveBlankUp()
+    tile.moveBlankLeft()
+    tile.moveBlankRight()
+    tile.printElmt()
+    print(tile.countUnmatch(tileGoal))
