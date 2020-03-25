@@ -18,25 +18,26 @@ class BranchAndBound:
 
     def findMinIdx(self):
         minVal, minIdx = self.states[0].cost, 0
-        for i in range(1, len(this.states)):
+        for i in range(1, len(self.states)):
             if minVal > self.states[i].cost:
-                minVal, minIdx = elf.states[i].cost, i
-        return i
+                minVal, minIdx = self.states[i].cost, i
+        return minIdx
 
-    def switchChildGenerator(self, opt, obj):
+    def switchChildGenerator(self, obj, opt):
         switcher = {
-            1 : obj.moveBlankUp(), 
-            2 : obj.moveBlankDown(),
-            3 : obj.moveBlankLeft(),
-            4 : obj.moveBlankRight(),
+            1 : obj.moveBlankUp, 
+            2 : obj.moveBlankDown,
+            3 : obj.moveBlankLeft,
+            4 : obj.moveBlankRight,
         }
-        return switcher.get(opt, false)
+        func = switcher.get(opt, lambda:False)
+        return func()
 
     def generateChild(self, parentState, opt, generatedState = 1, currCost = INF):
         child = TileGame()
         child.copyTile(parentState.state)
         cost = INF
-        succ = self.switchChildGenerator(opt, child)
+        succ = self.switchChildGenerator(child, opt)
 
         if (succ):
             unmatchTile = child.countUnmatch(self.goalState)

@@ -34,4 +34,7 @@ if __name__=='__main__':
 
     Solver = BranchAndBound(tile, tileGoal)
     print(Solver.findMinIdx())
+    if(Solver.switchChildGenerator(tile, 4)):
+        print("succeed")
+    tile.printElmt()
 

@@ -22,8 +22,8 @@ class TileGame:
             self.elmt[self.blankY][self.blankX], self.elmt[self.blankY+1][self.blankX] =\
                 self.elmt[self.blankY+1][self.blankX], self.elmt[self.blankY][self.blankX]
             self.blankY+=1
-            return true
-        return false
+            return True
+        return False
         # else:
         #     print("operasi Down tidak valid")
 
@@ -32,8 +32,8 @@ class TileGame:
             self.elmt[self.blankY-1][self.blankX], self.elmt[self.blankY][self.blankX] =\
                 self.elmt[self.blankY][self.blankX], self.elmt[self.blankY-1][self.blankX]
             self.blankY-=1
-            return true
-        return false
+            return True
+        return False
         # else:
         #     print("operasi Up tidak valid")
 
@@ -42,8 +42,8 @@ class TileGame:
             self.elmt[self.blankY][self.blankX-1], self.elmt[self.blankY][self.blankX] =\
                 self.elmt[self.blankY][self.blankX], self.elmt[self.blankY][self.blankX-1]
             self.blankX-=1
-            return true
-        return false
+            return True
+        return False
         # else:
         #     print("operasi Left tidak valid")
 
@@ -52,8 +52,8 @@ class TileGame:
             self.elmt[self.blankY][self.blankX+1], self.elmt[self.blankY][self.blankX] =\
                 self.elmt[self.blankY][self.blankX], self.elmt[self.blankY][self.blankX+1]
             self.blankX+=1
-            return true
-        return false
+            return True
+        return False
         # else:
         #     print("operasi Right tidak valid")
 
