@@ -63,18 +63,18 @@ class TilePuzzle:
     def fungsiKurang(self, idx=-1): 
         # Actually implementing only for 4x4 tile
         # dont know its name in english 
-        arrayFungsiKurang=[0 for i in range(16)]
-        sums = 0
+        self.elmt[self.blankY][self.blankX] = 16
+        arrayFungsiKurang=[0 for i in range(17)]
         for i in range(self.size):
             for j in range(self.size):
-                if(i != self.blankY and j != self.blankX):
-                    for k in range(i*self.size + j+1, self.size**2):
-                        if(self.elmt[k//self.size][k%self.size]<self.elmt[i][j]):
-                            # print(i, j, k//self.size, k%self.size)
-                            arrayFungsiKurang[self.elmt[i][j]]+=1 \
-                                if (k//self.size != self.blankY and k%self.size != self.blankX) else 0
+                for k in range(i*self.size + j+1, self.size**2):
+                    if(self.elmt[k//self.size][k%self.size]<self.elmt[i][j]):
+                        # print(i, j, k//self.size, k%self.size)
+                        arrayFungsiKurang[self.elmt[i][j]]+=1
                 if(self.elmt[i][j] == idx):
+                    self.elmt[self.blankY][self.blankX] = 0
                     return arrayFungsiKurang[idx]
+        self.elmt[self.blankY][self.blankX] = 0
         return arrayFungsiKurang
 
     def isSolvable(self):
@@ -92,7 +92,7 @@ class TilePuzzle:
         print("Hasil array fungsi kurang:")
         for i in range(1, len(arrayFungsiKurang)):
             print(str(i) + " : " + str(arrayFungsiKurang[i]))
-        print("Total : "+str(sum(arrayFungsiKurang)))
+        print("Jumlah : "+str(sum(arrayFungsiKurang)))
 
         print("Nilai X : " + str(X))
         return canSolved

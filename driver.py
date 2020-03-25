@@ -32,15 +32,19 @@ if __name__=='__main__':
     # Counting fungsi kurang
     print("Array hasil input file "+filename+":")
     tile.printElmt()
+    print("")
     canSolved = tile.printFungsiKurangX()
 
     if(not canSolved):
-        print("Tile tidak bisa diselesaikan!\nJumlah Fungsi kurang + X ganjil!")
+        print("\nTile tidak bisa diselesaikan!\nJumlah Fungsi kurang + X ganjil!")
     else:
-        print("Tile bisa diselesaikan!\n Total Fungsi kurang + X genap!")
+        print("\nTile bisa diselesaikan!\nTotal Fungsi kurang + X genap!")
         Solver = BranchAndBound(tile, tileGoal)
         minStep, totalState = Solver.findResult()
         # print(len(Solver.states))
-        print(minStep, totalState)
+        print("")
+        print("Banyak Step dibutuhkan : " + str(minStep))
+        print("Banyak State di generate : " + str(totalState))
+        print("")
         Solver.printSteps()
 
