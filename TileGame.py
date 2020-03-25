@@ -10,6 +10,9 @@ class TileGame:
                     self.blankX, self.blankY = j, i
                 self.elmt[i][j] = arr[i][j]
 
+    def __init__(self, other):
+        self.copyTile(other)
+
     def copyTile(self, other):
         self.size = other.size
         for i in range(self.size):
