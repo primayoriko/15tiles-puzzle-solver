@@ -7,7 +7,7 @@ class TileGame:
         for i in range(size):
             for j in range(size):
                 if(arr[i][j]==0):
-                    self.blank_x, self.blank_y = j, i
+                    self.blankX, self.blankY = j, i
                 self.elmt[i][j] = arr[i][j]
 
     def copyTile(self, other):
@@ -18,42 +18,42 @@ class TileGame:
         return self
 
     def moveBlankDown(self):
-        if(self.blank_y != self.size-1):
-            self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y+1][self.blank_x] =\
-                self.elmt[self.blank_y+1][self.blank_x], self.elmt[self.blank_y][self.blank_x]
-            self.blank_y+=1
-            return 1
-        return 0
+        if(self.blankY != self.size-1):
+            self.elmt[self.blankY][self.blankX], self.elmt[self.blankY+1][self.blankX] =\
+                self.elmt[self.blankY+1][self.blankX], self.elmt[self.blankY][self.blankX]
+            self.blankY+=1
+            return true
+        return false
         # else:
         #     print("operasi Down tidak valid")
 
     def moveBlankUp(self):
-        if(self.blank_y != 0):
-            self.elmt[self.blank_y-1][self.blank_x], self.elmt[self.blank_y][self.blank_x] =\
-                self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y-1][self.blank_x]
-            self.blank_y-=1
-            return 1
-        return 0
+        if(self.blankY != 0):
+            self.elmt[self.blankY-1][self.blankX], self.elmt[self.blankY][self.blankX] =\
+                self.elmt[self.blankY][self.blankX], self.elmt[self.blankY-1][self.blankX]
+            self.blankY-=1
+            return true
+        return false
         # else:
         #     print("operasi Up tidak valid")
 
     def moveBlankLeft(self):
-        if(self.blank_x != 0):
-            self.elmt[self.blank_y][self.blank_x-1], self.elmt[self.blank_y][self.blank_x] =\
-                self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y][self.blank_x-1]
-            self.blank_x-=1
-            return 1
-        return 0
+        if(self.blankX != 0):
+            self.elmt[self.blankY][self.blankX-1], self.elmt[self.blankY][self.blankX] =\
+                self.elmt[self.blankY][self.blankX], self.elmt[self.blankY][self.blankX-1]
+            self.blankX-=1
+            return true
+        return false
         # else:
         #     print("operasi Left tidak valid")
 
     def moveBlankRight(self):
-        if(self.blank_x != self.size-1):
-            self.elmt[self.blank_y][self.blank_x+1], self.elmt[self.blank_y][self.blank_x] =\
-                self.elmt[self.blank_y][self.blank_x], self.elmt[self.blank_y][self.blank_x+1]
-            self.blank_x+=1
-            return 1
-        return 0
+        if(self.blankX != self.size-1):
+            self.elmt[self.blankY][self.blankX+1], self.elmt[self.blankY][self.blankX] =\
+                self.elmt[self.blankY][self.blankX], self.elmt[self.blankY][self.blankX+1]
+            self.blankX+=1
+            return true
+        return false
         # else:
         #     print("operasi Right tidak valid")
 
@@ -69,14 +69,14 @@ class TileGame:
         sums = 0
         for i in range(4):
             for j in range(4):
-                if(i == self.blank_y and j == self.blank_x):
+                if(i == self.blankY and j == self.blankX):
                     # print(i, j)
                     sums += ((i+j)%2)
                 else:
                     for k in range(i*self.size + j+1, 16):
                         if(self.elmt[k//self.size][k%self.size]<self.elmt[i][j]):
                             # print(i, j, k//self.size, k%self.size)
-                            sums+=1 if (k//self.size != self.blank_y and k%self.size != self.blank_x) else 0
+                            sums+=1 if (k//self.size != self.blankY and k%self.size != self.blankX) else 0
         return sums
 
     def printElmt(self):
