@@ -46,6 +46,7 @@ class BranchAndBound:
             # child.printElmt()
             unmatchTile = child.countUnmatch(self.goalState)
             if(unmatchTile == 0):
+                generatedState += 1 if child not in self.visited else 0
                 cost = parentState.rootDist + 1
                 self.steps.append(child)
             elif (child not in self.visited):
