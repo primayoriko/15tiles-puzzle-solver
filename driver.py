@@ -24,7 +24,7 @@ if __name__=='__main__':
     # Defining start array
     # filename = input('15-Tile Puzzle Solver\n\nMasukkan nama file: ')
     filename = str(sys.argv[1])
-    print(filename)
+    print('15-Tile Puzzle Solver\n====================================\n')
     arr=[[0]*4 for _ in range(4)]
     inputTile(tile=arr, filename=filename)
     tile = TilePuzzle(arr=arr)

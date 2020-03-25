@@ -75,9 +75,11 @@ class BranchAndBound:
     def printSteps(self):
         print("State awal:")
         self.steps[0].printElmt()
+        print("")
         for i in range(1, len(self.steps)):
             print("Step ke-"+str(i)+":")
             self.steps[i].printElmt()
+            print("")
         print("finish!")
 
 if __name__=='__main__':
